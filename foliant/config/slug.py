@@ -9,7 +9,7 @@ the string that joins these values using ``-`` delimeter.
 Spaces in values are replaced with underscores.
 '''
 
-from yaml import add_constructor, load
+from yaml import add_constructor
 
 from foliant.config.base import BaseParser
 

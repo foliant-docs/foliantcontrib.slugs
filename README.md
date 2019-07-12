@@ -2,11 +2,15 @@
 
 Slugs is an extension for Foliant to generate custom slugs from arbitrary lists of values.
 
-It resolves `!slug` and `!date` YAML tags in the project config.
+It resolves `!slug`, `!date`, `!version` and `!commit_count` YAML tags in the project config.
 
 The list of values after the ``!slug`` tag is replaced with the string that joins these values using ``-`` delimeter. Spaces (` `) in the values are replaced with underscores (`_`).
 
 The value of the node that contains the `!date` tag is replaced with the current local date.
+
+The list of values after the ``!version`` tag is replaced with the string that joins these values using ``.`` delimeter.
+
+The value of the node that contains the `!commit_count` tag is replaced by the number of commits in current git repository.
 
 ## Installation
 
@@ -15,6 +19,8 @@ $ pip install foliantcontrib.slugs
 ```
 
 ## Usage
+
+### Slug
 
 Config example:
 
@@ -44,4 +50,51 @@ backend_config:
             - !date
     mkdocs:
         slug: my_awesome_project
+```
+
+### Version
+
+Config example:
+
+```yaml
+version: !version [1, 0, 5]
+```
+
+Resulting version:
+
+```
+1.0.5
+```
+
+If you wish to use the number of commits in current branch as a part of your version, add a `!commit_count` tag:
+
+```yaml
+version: !version
+    - 1
+    - !commit_count
+```
+
+results in:
+
+```
+1.85
+```
+
+`!commit_count` tag accepts two arguments:
+
+- name of the branch to count commits in
+- and correction — a positive or negative number to adjust the commit count.
+
+Let's say you want to bump the major version and start counting commits from the beginning. Also you want to use only number of commits in the `master` branch. Your config will look like this:
+
+```yaml
+version: !version
+    - 2
+    - !commit_count master -85
+```
+
+result:
+
+```
+2.0
 ```
