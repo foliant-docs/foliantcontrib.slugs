@@ -83,7 +83,7 @@ Resulting version:
 The `!commit_count` tag accepts two arguments:
 
 * name of the branch to count commits in;
-* correction — a positive or negative number to adjust the commit count.
+* correction—a positive or negative number to adjust the commit count.
 
 Suppose you want to bump the major version and start counting commits from the beginning. Also you want to use only number of commits in the `master` branch. So your config will look like this:
 
