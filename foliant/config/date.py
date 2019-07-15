@@ -5,7 +5,7 @@ Resolves ``!date`` YAML tag in the project config
 and replaces its node value with the current local date.
 '''
 
-from yaml import add_constructor, load
+from yaml import add_constructor
 from datetime import date
 
 from foliant.config.base import BaseParser
