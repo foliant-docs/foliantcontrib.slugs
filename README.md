@@ -2,11 +2,13 @@
 
 Slugs is an extension for Foliant to generate custom slugs from arbitrary lists of values.
 
-It resolves `!slug`, `!date`, `!version`, and `!commit_count` YAML tags in the project config.
+It resolves `!slug`, `!date`, `!time`, `!version`, and `!commit_count` YAML tags in the project config.
 
 The list of values after the `!slug` tag is replaced with the string that joins these values using `-` delimeter. Spaces (` `) in the values are replaced with underscores (`_`).
 
-The value of the node that contains the `!date` tag is replaced with the current local date.
+The value of the node that contains the `!date` tag is replaced with the current local date in the format `yyyy-mm-dd`.
+
+The value of the node that contains the `!time` tag is replaced with the current local time in the format `%H-%M-%S`.
 
 The list of values after the `!version` tag is replaced with the string that joins these values using `.` delimeter.
 
@@ -31,12 +33,13 @@ slug: !slug
     - *title
     - *version
     - !date
+    - !time
 ```
 
 Example of the resulting slug:
 
 ```
-My_Awesome_Project-1.0-2018-05-10
+My_Awesome_Project-1.0-2026-02-13-12-34-56
 ```
 
 Note that backends allow to override the top-level slug, so you may define different custom slugs for each backend:
@@ -48,6 +51,7 @@ backend_config:
             - *title
             - *version
             - !date
+            - !time
     mkdocs:
         slug: my_awesome_project
 ```
