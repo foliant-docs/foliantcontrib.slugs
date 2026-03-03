@@ -16,9 +16,9 @@ class Parser(BaseParser):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        add_constructor("!time", self._resolve_date_tag)
+        add_constructor("!time", self._resolve_time_tag)
 
-    def _resolve_date_tag(self, loader, node) -> str:
+    def _resolve_time_tag(self, loader, node) -> str:
         current_time = datetime.now().strftime("%H-%M-%S")
 
         self.logger.debug(f"Resolving !time tag. Current local time: {current_time}")
